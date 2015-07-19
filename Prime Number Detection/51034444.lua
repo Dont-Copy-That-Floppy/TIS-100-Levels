@@ -9,7 +9,7 @@ end
 -- be automatically formatted and wrapped to fit inside the puzzle information box.
 --
 function get_description()
-	return { "Detect if input is prime, if true then output 1, if false output 0", "Numbers start at 1, and go to 49" }
+	return { "Detect if input is prime, if true then output 1, if false output 0", "Numbers start at 1, and go to 121" }
 end
 
 -- The function get_streams() should return an array of streams. Each stream is described
@@ -38,8 +38,10 @@ function get_streams()
 	input = {}
 	output = {}
 	for i = 1,39 do
-		input[i] = math.random(2, 49)
-		if (input[i]%2 ~= 0 and input[i]%3 ~= 0 and input[i]%5 ~= 0 and input[i]%7 ~= 0) then
+		input[i] = math.random(1, 121)
+		if (input [i] == 2 or input[i] == 3 or input[i] == 5 or input[i] == 7 or input[i] == 11) then
+			output[i] = 1
+		elseif (input[i]%2 ~= 0 and input[i]%3 ~= 0 and input[i]%5 ~= 0 and input[i]%7 ~= 0 and input[i]%11 ~= 0) then
 			output[i] = 1
 		else
 			output[i] = 0
@@ -47,7 +49,7 @@ function get_streams()
 	end
 	return {
 		{ STREAM_INPUT, "IN.A", 1, input },
-		{ STREAM_OUTPUT, "OUT.A", 2, output },
+		{ STREAM_OUTPUT, "OUT.A", 3, output },
 	}
 end
 
